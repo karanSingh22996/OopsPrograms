@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "AdityaBirla",
+    "availableShares": 1000,
+    "price": 50
+  },
+  {
+    "id": 2,
+    "name": "Reliance",
+    "availableShares": 9950 ,
+    "price": 2000
+  },
+  {
+    "id": 3,
+    "name": "TataCS",
+    "availableShares": 5001,
+    "price": 1000
+  },
+  {
+    "id": 4,
+    "name": "Microsft",
+    "availableShares": 1001,
+    "price": 21000
+  }
+
+]
