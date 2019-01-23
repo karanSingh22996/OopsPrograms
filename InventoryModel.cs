@@ -13,6 +13,15 @@ namespace OopsPrograms
     class InventoryModel
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [Range(1, 10, ErrorMessage = "id must be in range 1 to 10")]
+        public int id { get; set; }
+
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
@@ -20,6 +29,7 @@ namespace OopsPrograms
         /// </value>
         [Required(ErrorMessage = "Name is Required")]
         public string name { get; set; }
+
         /// <summary>
         /// Gets or sets the weight.
         /// </summary>
@@ -28,6 +38,7 @@ namespace OopsPrograms
         /// </value>
         [Range(1, 1000, ErrorMessage = "availableShare must be in range 1 to 1000")]
         public double weight { get; set; }
+
         /// <summary>
         /// Gets or sets the priceper kg.
         /// </summary>
@@ -36,6 +47,7 @@ namespace OopsPrograms
         /// </value>
         [Range(1, 10000, ErrorMessage = "availableShare must be in range 1 to 10000")]
         public double priceperKg { get; set; }
+
         /// <summary>
         /// Reads the json data.
         /// </summary>

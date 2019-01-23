@@ -20,7 +20,9 @@ namespace OopsPrograms
         public void ReadData()
         {
             ////using streamreader class to read data from stock json file
-            using (StreamReader r = new StreamReader("stock.json"))
+            Constants constants = new Constants();
+
+            using (StreamReader r = new StreamReader(constants.stockList))
             {
                 ////json variable store all the details of the files read by readToEnd method
                 string json = r.ReadToEnd();

@@ -42,8 +42,8 @@ namespace OopsPrograms
                             stock.ReadData();
                             break;
                         case 4:
-                            InventoryManagement inventoryManagement = new InventoryManagement();
-                            inventoryManagement.ManageData();
+                            InventoryOperations inventory = new InventoryOperations();
+                            inventory.Manage();
                             break;
                         default:
                             Console.WriteLine("Enter valid data");

@@ -1,1 +1,26 @@
-[{"name":"Rice","weight":25.8,"priceperKg":20.0},{"name":"Pulse","weight":15.8,"priceperKg":40.0},{"name":"Wheat","weight":35.8,"priceperKg":25.0},{"name":"hsdajh","weight":45.0,"priceperKg":15.0}]
+[
+  {
+    "id": 1,
+    "name": "Rice",
+    "weight": 25.8,
+    "priceperKg": 20.0
+  },
+  {
+    "id": 2,
+    "name": "Pulse",
+    "weight": 15.8,
+    "priceperKg": 40.0
+  },
+  {
+    "id": 3,
+    "name": "Wheat",
+    "weight": 35.8,
+    "priceperKg": 25.0
+  },
+  {
+    "id": 4,
+    "name": "Chocos",
+    "weight": 45.0,
+    "priceperKg": 15.0
+  }
+]
