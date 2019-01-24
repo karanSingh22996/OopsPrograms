@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +48,7 @@ namespace OopsPrograms
         public void InventoryManagementData()
         {
             Console.WriteLine("File Contains");
-            Constants constants = new Constants();
+            //Constants constants = new Constants();
             //string items = InventoryManagementModel.ReadFile(Constants.inventoryManageMentDetails);
 
             using (StreamReader streamReader = new StreamReader(constants.inventoryProducts))
@@ -104,7 +105,7 @@ namespace OopsPrograms
 
         public void UpdateInventoryData()
         {
-            Constants constants = new Constants();
+            //Constants constants = new Constants();
             string data = InventoryManagement.ReadFile(constants.inventoryProducts);
             IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
 
@@ -156,6 +157,36 @@ namespace OopsPrograms
             var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
             File.WriteAllText(this.constants.inventoryProducts, convertedJson);
 
+        }
+        public void Delete()
+        {
+            string data = InventoryManagement.ReadFile(constants.inventoryProducts);
+            IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
+
+            foreach (var items in inventoryDetails)
+            {
+                Console.WriteLine(items.id + "\t" + items.name + "\t" + items.weight + "\t" + items.pricePerKg);
+            }
+            Console.WriteLine("Enter the Id to Delete");
+            int id = Convert.ToInt32(Console.ReadLine());
+            foreach (var item in inventoryDetails)
+            {
+                while (id == item.id)
+                {
+                    Console.WriteLine(item.id + "\t" + item.name + "\t" + item.weight + "\t" + item.pricePerKg);
+                    break;
+                }
+            }
+            foreach (var item in inventoryDetails)
+            {
+                while (id == item.id)
+                {
+                    inventoryDetails.Remove(item);
+                    break;
+                }
+            }
+            var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
+            File.WriteAllText(this.constants.inventoryProducts, convertedJson);
         }
     }
 }

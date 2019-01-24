@@ -15,6 +15,7 @@ namespace OopsPrograms
                 Console.WriteLine("Enter 1 to read the data from file");
                 Console.WriteLine("Enter 2 to Add the data to file");
                 Console.WriteLine("Enter 3 to Update the data in file");
+                Console.WriteLine("Enter 4 to Remove the data in file");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -26,6 +27,9 @@ namespace OopsPrograms
                         break;
                     case 3:
                         inventory.UpdateInventoryData();
+                        break;
+                    case 4:
+                        inventory.Delete();
                         break;
 
                 }

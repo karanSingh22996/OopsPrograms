@@ -27,6 +27,7 @@ namespace OopsPrograms
                     Console.WriteLine("Enter 2.For Regular Expression Program");
                     Console.WriteLine("Enter 3.For stock Program");
                     Console.WriteLine("Enter 4.For InventoryManagement Program");
+                    Console.WriteLine("Enter 5.For DeckOfCards Program");
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -35,7 +36,7 @@ namespace OopsPrograms
                             break;
                         case 2:
                             RegularExpression regularExpression = new RegularExpression();
-                            regularExpression.RetrieveInfo();
+                            regularExpression.ReadData();
                             break;
                         case 3:
                             Stock stock = new Stock();
@@ -44,6 +45,10 @@ namespace OopsPrograms
                         case 4:
                             InventoryOperations inventory = new InventoryOperations();
                             inventory.Manage();
+                            break;
+                        case 5:
+                            DeckOfCard deckOfCard = new DeckOfCard();
+                            deckOfCard.Execution();
                             break;
                         default:
                             Console.WriteLine("Enter valid data");
