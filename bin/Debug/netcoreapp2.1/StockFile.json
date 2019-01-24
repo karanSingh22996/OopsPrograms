@@ -1,0 +1,25 @@
+[{
+		"id": 10,
+		"Name": "Microsoft",
+		"PricePerShare": 250,
+		"AvailableShare": 5000
+	},
+	{
+		"id": 12,
+		"Name": "IBM",
+		"PricePerShare": 150,
+		"AvailableShare": 2000
+	},
+	{
+		"id": 13,
+		"Name": "Infosys",
+		"PricePerShare": 300,
+		"AvailableShare": 2500
+	},
+	{
+		"id": 14,
+		"Name": "Delloite",
+		"PricePerShare": 150,
+		"AvailableShare": 2600
+	}
+]
