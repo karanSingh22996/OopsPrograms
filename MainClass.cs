@@ -28,6 +28,7 @@ namespace OopsPrograms
                     Console.WriteLine("Enter 3.For stock Program");
                     Console.WriteLine("Enter 4.For InventoryManagement Program");
                     Console.WriteLine("Enter 5.For DeckOfCards Program");
+                    Console.WriteLine("Enter 6.For Commercial Data processing Program");
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -49,6 +50,10 @@ namespace OopsPrograms
                         case 5:
                             DeckOfCard deckOfCard = new DeckOfCard();
                             deckOfCard.Execution();
+                            break;
+                        case 6:
+                            DataProcessingMain dataProcessingMain = new DataProcessingMain();
+                            dataProcessingMain.DataProcess();
                             break;
                         default:
                             Console.WriteLine("Enter valid data");

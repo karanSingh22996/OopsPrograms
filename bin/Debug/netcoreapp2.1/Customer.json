@@ -1,21 +1,22 @@
-[{
-		"id": 1,
-		"name": "Parmesh",
-		"totalShare": 10
-	},
-	{
-		"id": 2,
-		"name": "Manjunath",
-		"totalShare": 15
-	},
-	{
-		"id": 2,
-		"name": "Vivek",
-		"totalShare": 5
-	},
-	{
-		"id": 4,
-		"name": "Manoj",
-		"totalShare": 50
-	}
+[
+  {
+    "id": 1,
+    "name": "Parmesh",
+    "valuation": 1500
+  },
+  {
+    "id": 2,
+    "name": "Manju",
+    "valuation": 2000
+  },
+  {
+    "id": 3,
+    "name": "Vivek",
+    "valuation": 2500
+  },
+  {
+    "id": 4,
+    "name": "Manoj",
+    "valuation": 3500
+  }
 ]
