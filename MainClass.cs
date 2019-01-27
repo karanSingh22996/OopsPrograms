@@ -6,6 +6,7 @@
 namespace OopsPrograms
 {
     using System;
+
     /// <summary>
     /// Main class is created to give choice to user which program you want to execute
     /// </summary>
@@ -15,7 +16,7 @@ namespace OopsPrograms
         /// Defines the entry point of the application.
         /// </summary>
         /// <param name="args">The arguments.</param>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             ////try block is use to execute the normal flow of the program execution
             try
@@ -29,6 +30,7 @@ namespace OopsPrograms
                     Console.WriteLine("Enter 4.For InventoryManagement Program");
                     Console.WriteLine("Enter 5.For DeckOfCards Program");
                     Console.WriteLine("Enter 6.For Commercial Data processing Program");
+                    Console.WriteLine("Enter 7.For Removing stock Program");
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -55,13 +57,19 @@ namespace OopsPrograms
                             DataProcessingMain dataProcessingMain = new DataProcessingMain();
                             dataProcessingMain.DataProcess();
                             break;
+                        case 7:
+                            RemovingStock removingStock = new RemovingStock();
+                            removingStock.RemoveStock();
+                            break;
                         default:
                             Console.WriteLine("Enter valid data");
                             break;
                     }
+
                     Console.WriteLine("Do you want to continue(y/n)");
                     ch = Convert.ToChar(Console.ReadLine());
-                } while (ch != 'n');
+                }
+                while (ch != 'n');
             }
             catch (Exception e)
             {

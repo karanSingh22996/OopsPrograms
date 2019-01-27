@@ -12,6 +12,6 @@ namespace OopsPrograms
         public readonly string customerData = @"Customer.json";
         public readonly string stockFile = @"StockFile.json";
         public readonly string transactionFile = @"transactionFile.json";
-
+        public readonly string address = @"Adress.json";
     }
 }

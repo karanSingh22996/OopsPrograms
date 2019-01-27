@@ -14,16 +14,17 @@ namespace OopsPrograms
         /// <value>
         /// The identifier.
         /// </value>
-        [Range(1,10,ErrorMessage="id must be in range 1 to 10")]
-        public int id { get; set; }
+        [Range(1, 10, ErrorMessage = "id must be in range 1 to 10")]
+        public int Id { get; set; }
+
         /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
         /// The name.
         /// </value>
-        [Required (ErrorMessage="Name is Required")]
-        public string name { get; set; }
+        [Required(ErrorMessage = "Name is Required")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the available share.
@@ -32,7 +33,8 @@ namespace OopsPrograms
         /// The available share.
         /// </value>
         [Range(1, 1000, ErrorMessage = "availableShare must be in range 1 to 1000")]
-        public int availableShares { get; set; }
+        public int AvailableShares { get; set; }
+
         /// <summary>
         /// Gets or sets the price.
         /// </summary>
@@ -40,7 +42,6 @@ namespace OopsPrograms
         /// The price.
         /// </value>
         [Range(1, 1000, ErrorMessage = "price must be in range 1 to 1000")]
-        public int price { get; set; }
-
+        public int Price { get; set; }
     }
 }

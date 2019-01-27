@@ -15,19 +15,19 @@ namespace OopsPrograms
         /// <summary>
         /// The face
         /// </summary>
-        string face;
+        public string face;
 
         /// <summary>
         /// The suit
         /// </summary>
-        string suit;
+        public string suit;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
         /// </summary>
         /// <param name="cardFace">The card face.</param>
         /// <param name="cardSuit">The card suit.</param>
-        public Card(string cardFace,string cardSuit)
+        public Card(string cardFace, string cardSuit)
         {
             ////Initializing instance variable face with cardFace passed at the time of creation of object
             face = cardFace;
@@ -54,24 +54,25 @@ namespace OopsPrograms
     public class DeckOfCard
     {
         /// <summary>
+        /// The number of card
+        /// </summary>
+        public const int NUMBER_OF_CARD = 36;
+
+        /// <summary>
         /// The deck array
         /// </summary>
-        Card[] deck;
+        public Card[] deck;
 
         /// <summary>
         /// The current card
         /// </summary>
-        int currentCard;
-
-        /// <summary>
-        /// The number of card
-        /// </summary>
-        const int NUMBER_OF_CARD = 36;
+        public int currentCard;
 
         /// <summary>
         /// The random number
         /// </summary>
-        Random ranNum;
+        public Random ranNum;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DeckOfCard"/> class.
         /// </summary>
@@ -88,7 +89,7 @@ namespace OopsPrograms
             ////creating object of random class
             ranNum = new Random();
             ////iterating till the length of deck
-            for(int i = 0; i < deck.Length; i++)
+            for (int i = 0; i < deck.Length; i++)
             {
                 ////assigning values to array using constructor of card
                 deck[i] = new Card(faces[i % 11], suits[i / 13]);
@@ -100,15 +101,23 @@ namespace OopsPrograms
         /// </summary>
         public void Shuffle()
         {
-            currentCard = 0;
-            for(int first = 0; first < deck.Length; first++)
+            try
             {
-                int second = ranNum.Next(NUMBER_OF_CARD);
-                Card temp = deck[first];
-                deck[first] = deck[second];
-                deck[second] = temp;
+                currentCard = 0;
+                for (int first = 0; first < deck.Length; first++)
+                {
+                    int second = ranNum.Next(NUMBER_OF_CARD);
+                    Card temp = deck[first];
+                    deck[first] = deck[second];
+                    deck[second] = temp;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
+
         public Card DealCard()
         {
             if (currentCard < deck.Length)
@@ -120,19 +129,26 @@ namespace OopsPrograms
                 return null;
             }
         }
+
         public void Execution()
         {
-            DeckOfCard deckOfCard = new DeckOfCard();
-            deckOfCard.Shuffle();
-            Console.WriteLine("Player 1\t\t Player 2  \t Player 3\t Player 4 ");
-            for(int i = 0; i < 36; i++)
+            try
             {
-                Console.Write("{0,-19}", deckOfCard.DealCard());
-                if ((i + 1) % 4 == 0)
+                DeckOfCard deckOfCard = new DeckOfCard();
+                deckOfCard.Shuffle();
+                Console.WriteLine("Player 1\t\t Player 2  \t Player 3\t Player 4 ");
+                for (int i = 0; i < 36; i++)
                 {
-                    Console.WriteLine();
+                    Console.Write("{0,-19}", deckOfCard.DealCard());
+                    if ((i + 1) % 4 == 0)
+                    {
+                        Console.WriteLine();
+                    }
                 }
-               
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
     }

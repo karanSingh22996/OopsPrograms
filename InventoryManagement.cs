@@ -1,16 +1,18 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="InventoryManagement.cs" company="Bridgelabz">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    class InventoryManagement
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    public class InventoryManagement
     {
-        IList<InventoryManagement> inventory = new List<InventoryManagement>();
-        Constants constants = new Constants();
+        public IList<InventoryManagement> inventory = new List<InventoryManagement>();
+        public Constants constants = new Constants();
 
         /// <summary>
         /// Gets or sets the identifier.
@@ -18,7 +20,7 @@ namespace OopsPrograms
         /// <value>
         /// The identifier.
         /// </value>
-        public int id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -26,7 +28,7 @@ namespace OopsPrograms
         /// <value>
         /// The name.
         /// </value>
-        public string name { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the weight.
@@ -34,7 +36,7 @@ namespace OopsPrograms
         /// <value>
         /// The weight.
         /// </value>
-        public double weight { get; set; }
+        public double Weight { get; set; }
 
         /// <summary>
         /// Gets or sets the price per kg.
@@ -42,25 +44,32 @@ namespace OopsPrograms
         /// <value>
         /// The price per kg.
         /// </value>
-        public double pricePerKg { get; set; }
-
-
+        public double PricePerKg { get; set; }
         public void InventoryManagementData()
         {
-            Console.WriteLine("File Contains");
-            //Constants constants = new Constants();
-            //string items = InventoryManagementModel.ReadFile(Constants.inventoryManageMentDetails);
+            try
+            {
+                Console.WriteLine("File Contains");
+                ////Constants constants = new Constants();
+                ////string items = InventoryManagementModel.ReadFile(Constants.inventoryManageMentDetails);
 
-            using (StreamReader streamReader = new StreamReader(constants.inventoryProducts))
-            {
-                string json = streamReader.ReadToEnd();
-                inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(json);
+                using (StreamReader streamReader = new StreamReader(constants.inventoryProducts))
+                {
+                    string json = streamReader.ReadToEnd();
+                    inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(json);
+                }
+
+                foreach (var items in inventory)
+                {
+                    Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Weight + "\t" + items.PricePerKg);
+                }
             }
-            foreach (var items in inventory)
+            catch (Exception e)
             {
-                Console.WriteLine(items.id+"\t"+items.name + "\t" + items.weight + "\t" + items.pricePerKg);
+                Console.WriteLine(e.Message);
             }
         }
+
         public void AddToInventory()
         {
             try
@@ -73,9 +82,9 @@ namespace OopsPrograms
                 double price = Convert.ToDouble(Console.ReadLine());
                 InventoryManagement managementModel = new InventoryManagement()
                 {
-                    name = name,
-                    weight = weight,
-                    pricePerKg = price
+                    Name = name,
+                    Weight = weight,
+                    PricePerKg = price
                 };
 
                 string data = InventoryManagement.ReadFile(constants.inventoryProducts);
@@ -83,13 +92,11 @@ namespace OopsPrograms
                 inventory.Add(managementModel);
                 var convertedJson = JsonConvert.SerializeObject(inventory);
                 File.WriteAllText(constants.inventoryProducts, convertedJson);
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
 
         public static string ReadFile(string fileName)
@@ -100,93 +107,113 @@ namespace OopsPrograms
                 streamReader.Close();
                 return json;
             }
-
         }
 
         public void UpdateInventoryData()
         {
-            //Constants constants = new Constants();
-            string data = InventoryManagement.ReadFile(constants.inventoryProducts);
-            IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
-
-            foreach (var items in inventoryDetails)
+            try
             {
-                Console.WriteLine(items.id + "\t" + items.name + "\t" + items.weight + "\t" + items.pricePerKg);
-            }
-            Console.WriteLine("Enter the Id to update");
-            int id = Convert.ToInt32(Console.ReadLine());
-            foreach (var item in inventoryDetails)
-            {
-                while (id == item.id)
+                ////Constants constants = new Constants();
+                string data = InventoryManagement.ReadFile(constants.inventoryProducts);
+                IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
+                foreach (var items in inventoryDetails)
                 {
-                    Console.WriteLine(item.id + "\t" + item.name + "\t" + item.weight + "\t" + item.pricePerKg);
-                    break;
+                    Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Weight + "\t" + items.PricePerKg);
                 }
-            }
-            Console.WriteLine("Enter 1 to change the price \n Enter 2 to change weight");
-            int property = Convert.ToInt32(Console.ReadLine());
-            int newPrice = 0;
-            int newWeight = 0;
-            switch (property)
-            {
-                case 1:
-                    Console.WriteLine("Enter new Price");
-                    newPrice = Convert.ToInt32(Console.ReadLine());
-                    foreach (var item in inventoryDetails)
-                    {
-                        while (id == item.id)
-                        {
-                            item.pricePerKg = newPrice;
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    Console.WriteLine("Enter new Price");
-                    newWeight = Convert.ToInt32(Console.ReadLine());
-                    foreach (var item in inventoryDetails)
-                    {
-                        while (id == item.id)
-                        {
-                            item.weight = weight;
-                            break;
-                        }
-                    }
-                    break;
-            }
-            var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
-            File.WriteAllText(this.constants.inventoryProducts, convertedJson);
 
+                Console.WriteLine("Enter the Id to update");
+                int id = Convert.ToInt32(Console.ReadLine());
+                foreach (var item in inventoryDetails)
+                {
+                    while (id == item.Id)
+                    {
+                        Console.WriteLine(item.Id + "\t" + item.Name + "\t" + item.Weight + "\t" + item.PricePerKg);
+                        break;
+                    }
+                }
+
+                Console.WriteLine("Enter 1 to change the price \n Enter 2 to change weight");
+                int property = Convert.ToInt32(Console.ReadLine());
+                int newPrice = 0;
+                int newWeight = 0;
+                switch (property)
+                {
+                    case 1:
+                        Console.WriteLine("Enter new Price");
+                        newPrice = Convert.ToInt32(Console.ReadLine());
+                        foreach (var item in inventoryDetails)
+                        {
+                            while (id == item.Id)
+                            {
+                                item.PricePerKg = newPrice;
+                                break;
+                            }
+                        }
+
+                        break;
+                    case 2:
+                        Console.WriteLine("Enter new Price");
+                        newWeight = Convert.ToInt32(Console.ReadLine());
+                        foreach (var item in inventoryDetails)
+                        {
+                            while (id == item.Id)
+                            {
+                                item.Weight = Weight;
+                                break;
+                            }
+                        }
+
+                        break;
+                }
+
+                var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
+                File.WriteAllText(this.constants.inventoryProducts, convertedJson);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
+
         public void Delete()
         {
-            string data = InventoryManagement.ReadFile(constants.inventoryProducts);
-            IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
+            try
+            {
+                string data = InventoryManagement.ReadFile(constants.inventoryProducts);
+                IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
 
-            foreach (var items in inventoryDetails)
-            {
-                Console.WriteLine(items.id + "\t" + items.name + "\t" + items.weight + "\t" + items.pricePerKg);
-            }
-            Console.WriteLine("Enter the Id to Delete");
-            int id = Convert.ToInt32(Console.ReadLine());
-            foreach (var item in inventoryDetails)
-            {
-                while (id == item.id)
+                foreach (var items in inventoryDetails)
                 {
-                    Console.WriteLine(item.id + "\t" + item.name + "\t" + item.weight + "\t" + item.pricePerKg);
-                    break;
+                    Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Weight + "\t" + items.PricePerKg);
                 }
-            }
-            foreach (var item in inventoryDetails)
-            {
-                while (id == item.id)
+
+                Console.WriteLine("Enter the Id to Delete");
+                int id = Convert.ToInt32(Console.ReadLine());
+                foreach (var item in inventoryDetails)
                 {
-                    inventoryDetails.Remove(item);
-                    break;
+                    while (id == item.Id)
+                    {
+                        Console.WriteLine(item.Id + "\t" + item.Name + "\t" + item.Weight + "\t" + item.PricePerKg);
+                        break;
+                    }
                 }
+
+                foreach (var item in inventoryDetails)
+                {
+                    while (id == item.Id)
+                    {
+                        inventoryDetails.Remove(item);
+                        break;
+                    }
+                }
+
+                var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
+                File.WriteAllText(this.constants.inventoryProducts, convertedJson);
             }
-            var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
-            File.WriteAllText(this.constants.inventoryProducts, convertedJson);
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
