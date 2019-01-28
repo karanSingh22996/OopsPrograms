@@ -7,8 +7,15 @@ namespace OopsPrograms
 {
     using System;
     using System.Collections.Generic;
+
+    /// <summary>
+    /// DataProcessingMain class is calling class which will execute all the methods
+    /// </summary>
     public class DataProcessingMain
     {
+        /// <summary>
+        /// Data the process.
+        /// </summary>
         public void DataProcess()
         {
             try

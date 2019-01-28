@@ -1,15 +1,19 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file=" InventoryModel.cs" company="Bridgelabz">
+// <copyright file="InventoryModel.cs" company="Bridgelabz">
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
 namespace OopsPrograms
-{
-    using Newtonsoft.Json;
+{   
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Inventory model consists of all the attributes of the inventory
+    /// </summary>
     public class InventoryModel
     {
         /// <summary>
@@ -45,11 +49,11 @@ namespace OopsPrograms
         /// <value>
         /// The priceper kg.
         /// </value>
-        [Range(1, 10000, ErrorMessage = "availableShare must be in range 1 to 10000")]
+        [Range(1, 10000, ErrorMessage = "PriceperKg must be in range 1 to 10000")]
         public double PriceperKg { get; set; }
 
         /// <summary>
-        /// Reads the json data.
+        /// Reads the Json data.
         /// </summary>
         public static void ReadJsonData()
         {
@@ -62,7 +66,7 @@ namespace OopsPrograms
                     List<InventoryModel> items = JsonConvert.DeserializeObject<List<InventoryModel>>(json);
                     foreach (var model in items)
                     {
-                        Console.WriteLine(" {0}\t  {1}\t  {2}\t\t {3}", model.Name, model.Weight, model.PriceperKg, (model.Weight * model.PriceperKg));
+                        Console.WriteLine(" {0}\t  {1}\t  {2}\t\t {3}", model.Name, model.Weight, model.PriceperKg, model.Weight * model.PriceperKg);
                         ////Console.WriteLine("Weight {0}", model.weight);
                         ////Console.WriteLine("Price {0}",model.priceperKg);
                         ////Console.WriteLine("The price of "+model.name+" is "+(model.weight*model.priceperKg));

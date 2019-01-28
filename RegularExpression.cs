@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file=" RegularExpression.cs" company="Bridgelabz">
+// <copyright file="RegularExpression.cs" company="Bridgelabz">
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -9,17 +9,17 @@ namespace OopsPrograms
     using System.Text.RegularExpressions;
 
     /// <summary>
-    /// This class will provide information about the details by taking user input name and mmobile number
+    /// This class will provide information about the details by taking user input name and mobile number
     /// </summary>
     public class RegularExpression
     {
         /// <summary>
         /// Shows the match.
         /// </summary>
-        /// <param name="text">The text.</param>
-        /// <param name="expr">The expr.</param>
-        /// <param name="pattern">The pattern.</param>
-        /// <returns>string</returns>
+        /// <param name="text">The text of string </param>
+        /// <param name="expr">The expressions of string </param>
+        /// <param name="pattern">The pattern of string</param>
+        /// <returns>string return type</returns>
         public static string ShowMatch(string text, string expr, string pattern)
         {
             ////creating regex class object for passing pattern
@@ -28,14 +28,21 @@ namespace OopsPrograms
             return newString;
         }
 
+        /// <summary>
+        /// Operations this instance.
+        /// </summary>
         public void Operation()
         {
-            ReadData();
+            this.ReadData();
         }
 
         /// <summary>
         /// Retrieves the information.
         /// </summary>
+        /// <param name="fname"> The first name string </param>
+        /// <param name="lname"> The last name string  </param>
+        /// <param name="mno"> The mobile no string </param>
+        /// <param name="date"> The date string </param>
         public void RetrieveInfo(string fname, string lname, string mno, string date)
         {
             try
@@ -55,10 +62,10 @@ namespace OopsPrograms
                 ////using showmatch static method of regularexexpression class to replace the pattern with valid data
                 message = RegularExpression.ShowMatch(message, "91" + " " + mno, contactNumber);
                 ////Pattern for changing Currrent date from the sentence   
-                string Currentdate = "<<dd/mm/yyyy>>";
+                string currentdate = "<<dd/mm/yyyy>>";
                 DateTime today = DateTime.Today;
                 ////using showmatch static method of regularexexpression class to replace the pattern with valid data
-                message = RegularExpression.ShowMatch(message, today.ToString(), Currentdate);
+                message = RegularExpression.ShowMatch(message, today.ToString(), currentdate);
 
                 Console.WriteLine(message);
             }
@@ -67,7 +74,10 @@ namespace OopsPrograms
                 Console.WriteLine(e.Message);
             }
         }
-        
+
+        /// <summary>
+        /// Reads the data.
+        /// </summary>
         public void ReadData()
         {
             try
@@ -87,7 +97,7 @@ namespace OopsPrograms
                 string date = thisDay.ToString("d");
                 if (Regex.IsMatch(mobineno, @"[0-9]{10}") && Regex.IsMatch(fname, @"[a-zA-z]") && Regex.IsMatch(lname, @"[a-zA-z]"))
                 {
-                    RetrieveInfo(fname, lname, mobineno, date);
+                    this.RetrieveInfo(fname, lname, mobineno, date);
                 }
                 else
                 {

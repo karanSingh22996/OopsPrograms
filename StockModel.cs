@@ -6,6 +6,10 @@
 namespace OopsPrograms
 {
     using System.ComponentModel.DataAnnotations;
+
+    /// <summary>
+    /// stock model class have all the private member and to access them get set method is used
+    /// </summary>
     public class StockModel
     {
         /// <summary>

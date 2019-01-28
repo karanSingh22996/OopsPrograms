@@ -28,6 +28,13 @@ namespace OopsPrograms
         /// <summary>
         /// Initializes a new instance of the <see cref="Address"/> class.
         /// </summary>
+        public Address()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Address"/> class.
+        /// </summary>
         /// <param name="city">The city.</param>
         /// <param name="state">The state.</param>
         /// <param name="zip">The zip.</param>
@@ -44,7 +51,7 @@ namespace OopsPrograms
         /// <value>
         /// The city.
         /// </value>
-        public string City { get => city; set => city = value; }
+        public string City { get => this.city; set => this.city = value; }
 
         /// <summary>
         /// Gets or sets the state.
@@ -52,7 +59,7 @@ namespace OopsPrograms
         /// <value>
         /// The state.
         /// </value>
-        public string State { get => state; set => state = value; }
+        public string State { get => this.state; set => this.state = value; }
 
         /// <summary>
         /// Gets or sets the zip1.
@@ -60,6 +67,6 @@ namespace OopsPrograms
         /// <value>
         /// The zip1.
         /// </value>
-        public string Zip1 { get => zip; set => zip = value; }
+        public string Zip1 { get => this.zip; set => this.zip = value; }
     }
 }

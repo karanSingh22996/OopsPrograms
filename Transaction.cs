@@ -5,12 +5,58 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Transaction class holds all the operations which are done during transactions
+    /// </summary>
     public class Transaction
     {
+        /// <summary>
+        /// Writes the file.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="data">The data.</param>
+        public static void WriteFile(string fileName, object data)
+        {
+            var convertedJson = JsonConvert.SerializeObject(data);
+            File.WriteAllText(fileName, convertedJson);
+        }
+
+        /// <summary>
+        /// Gets all transactions.
+        /// </summary>
+        /// <returns> IList return type </returns>
+        public static IList<TransactionModel> GetAllTransactions()
+        {
+            Constants constants = new Constants();
+            IList<TransactionModel> transactions = new List<TransactionModel>();
+            using (StreamReader stream = new StreamReader(constants.TransactionFile))
+            {
+                string json = stream.ReadToEnd();
+                stream.Close();
+                transactions = JsonConvert.DeserializeObject<IList<TransactionModel>>(json);
+                stream.Close();
+            }
+
+            return transactions;
+        }
+
+        /// <summary>
+        /// Buys the stock.
+        /// </summary>
+        /// <exception cref="Exception">
+        /// Invalid stock id
+        /// or
+        /// Invalid stock id
+        /// or
+        /// Invalid customer id
+        /// or
+        /// No. of shares you mentioned are not available in stock or invalid input
+        /// </exception>
         public void BuyStock()
         {
             CustomerData customer = new CustomerData();
@@ -52,8 +98,8 @@ namespace OopsPrograms
 
             Console.WriteLine("Enter the number of shares need to purchase");
             int numberOfShares = Convert.ToInt32(Console.ReadLine());
-            string customerName = "";
-            string stockName = "";
+            string customerName = string.Empty;
+            string stockName = string.Empty;
             int amountValuation = 0;
             if (numberOfShares < stockDataModel.NumberOfShare || numberOfShares <= 0)
             {
@@ -109,18 +155,24 @@ namespace OopsPrograms
             IList<TransactionModel> transactionModels = Transaction.GetAllTransactions();
             transactionModels.Add(transactionModel);
             Constants constants = new Constants();
-            Transaction.WriteFile(constants.stockFile, stockModels);
-            Transaction.WriteFile(constants.customerData, customerModels);
-            Transaction.WriteFile(constants.transactionFile, transactionModels);
+            Transaction.WriteFile(constants.StockFile, stockModels);
+            Transaction.WriteFile(constants.CustomerData, customerModels);
+            Transaction.WriteFile(constants.TransactionFile, transactionModels);
             Console.WriteLine("purchase sucessfull");
         }
 
-        public static void WriteFile(string fileName, object data)
-        {
-            var convertedJson = JsonConvert.SerializeObject(data);
-            File.WriteAllText(fileName, convertedJson);
-        }
-
+        /// <summary>
+        /// Sells the stock.
+        /// </summary>
+        /// <exception cref="Exception">
+        /// Invalid stock id
+        /// or
+        /// Invalid stock id
+        /// or
+        /// Invalid customer id
+        /// or
+        /// No. of shares you mentioned are not available in stock or invalid input
+        /// </exception>
         public void SellStock()
         {
             CustomerData customer = new CustomerData();
@@ -162,8 +214,8 @@ namespace OopsPrograms
 
             Console.WriteLine("Enter the number of shares need to sell");
             int numberOfShares = Convert.ToInt32(Console.ReadLine());
-            string customerName = "";
-            string stockName = "";
+            string customerName = string.Empty;
+            string stockName = string.Empty;
             int amountValuation = 0;
             if (numberOfShares > 0)
             {
@@ -219,25 +271,10 @@ namespace OopsPrograms
             IList<TransactionModel> transactionModels = Transaction.GetAllTransactions();
             transactionModels.Add(transactionModel);
             Constants constants = new Constants();
-            Transaction.WriteFile(constants.stockFile, stockModels);
-            Transaction.WriteFile(constants.customerData, customerModels);
-            Transaction.WriteFile(constants.transactionFile, transactionModels);
+            Transaction.WriteFile(constants.StockFile, stockModels);
+            Transaction.WriteFile(constants.CustomerData, customerModels);
+            Transaction.WriteFile(constants.TransactionFile, transactionModels);
             Console.WriteLine("selling is successfull");
-        }
-
-        public static IList<TransactionModel> GetAllTransactions()
-        {
-            Constants constants = new Constants();
-            IList<TransactionModel> transactions = new List<TransactionModel>();
-            using (StreamReader stream = new StreamReader(constants.transactionFile))
-            {
-                string json = stream.ReadToEnd();
-                stream.Close();
-                transactions = JsonConvert.DeserializeObject<IList<TransactionModel>>(json);
-                stream.Close();
-            }
-
-            return transactions;
         }
     }
 }

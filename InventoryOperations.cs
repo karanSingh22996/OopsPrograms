@@ -6,8 +6,15 @@
 namespace OopsPrograms
 {
     using System;
+
+    /// <summary>
+    /// Inventory operations method is calling class of all the methods
+    /// </summary>
     public class InventoryOperations
     {
+        /// <summary>
+        /// Manages this instance.
+        /// </summary>
         public void Manage()
         {
             try

@@ -5,10 +5,10 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// stock class will display all the date inside the stock json file
@@ -25,7 +25,7 @@ namespace OopsPrograms
                 ////using streamreader class to read data from stock json file
                 Constants constants = new Constants();
 
-                using (StreamReader r = new StreamReader(constants.stockList))
+                using (StreamReader r = new StreamReader(constants.StockList))
                 {
                     ////json variable store all the details of the files read by readToEnd method
                     string json = r.ReadToEnd();

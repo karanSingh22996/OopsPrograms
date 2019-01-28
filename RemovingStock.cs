@@ -5,18 +5,24 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using Newtonsoft.Json;
 
+    /// <summary>
+    /// Removing stock will have the functionality to delete stocks
+    /// </summary>
     public class RemovingStock
     {
+        /// <summary>
+        /// Removes the stock.
+        /// </summary>
         public void RemoveStock()
         {
             Constants constants = new Constants();
-            using (StreamReader stream = new StreamReader(constants.stockFile))
+            using (StreamReader stream = new StreamReader(constants.StockFile))
             {
                 string data = stream.ReadToEnd();
                 stream.Close();
@@ -48,7 +54,7 @@ namespace OopsPrograms
                 removestock.Remove(itemToRemove);
 
                 var convertedJson = JsonConvert.SerializeObject(removestock);
-                File.WriteAllText(constants.stockFile, convertedJson);
+                File.WriteAllText(constants.StockFile, convertedJson);
                 Console.ReadLine();
             }
         }

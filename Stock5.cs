@@ -5,13 +5,24 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// stock class will have method to add and print all the stocks
+    /// </summary>
     public class Stock5
     {
-        public Constants constants = new Constants();
+        /// <summary>
+        /// The constants
+        /// </summary>
+        private Constants constants = new Constants();
+
+        /// <summary>
+        /// Adds the stock.
+        /// </summary>
         public void AddStock()
         {
             try
@@ -31,14 +42,14 @@ namespace OopsPrograms
                 stock.PricePerShare = price;
                 stock.NumberOfShare = num;
                 Constants constants = new Constants();
-                using (StreamReader sr = new StreamReader(constants.stockFile))
+                using (StreamReader sr = new StreamReader(constants.StockFile))
                 {
                     string json = sr.ReadToEnd();
                     sr.Close();
                     stockModels = JsonConvert.DeserializeObject<List<StockModel5>>(json);
                     stockModels.Add(stock);
                     var write = JsonConvert.SerializeObject(stockModels);
-                    File.WriteAllText(constants.stockFile, write);
+                    File.WriteAllText(constants.StockFile, write);
                 }
             }
             catch (Exception e)
@@ -47,12 +58,16 @@ namespace OopsPrograms
             }
         }
 
+        /// <summary>
+        /// Gets the stock.
+        /// </summary>
+        /// <returns> IList returns </returns>
         public IList<StockModel5> GetStock()
         {
             IList<StockModel5> list = new List<StockModel5>();
             try
             {
-                using (StreamReader sr = new StreamReader(constants.stockFile))
+                using (StreamReader sr = new StreamReader(this.constants.StockFile))
                 {
                     var json = sr.ReadToEnd();
                     list = JsonConvert.DeserializeObject<List<StockModel5>>(json);

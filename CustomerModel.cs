@@ -5,16 +5,48 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
+    /// <summary>
+    /// CustomerModel class have all the attributes of a person
+    /// </summary>
     public class CustomerModel
     {
+        /// <summary>
+        /// The name
+        /// </summary>
         private string name;
-        private int id;   
+
+        /// <summary>
+        /// The identifier
+        /// </summary>
+        private int id;
+
+        /// <summary>
+        /// The valuation
+        /// </summary>
         private int valuation;
 
-        public string Name { get => name; set => name = value; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name { get => this.name; set => this.name = value; }
 
-        public int Id { get => id; set => id = value; }
+        /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public int Id { get => this.id; set => this.id = value; }
 
-        public int Valuation { get => valuation; set => valuation = value; }
+        /// <summary>
+        /// Gets or sets the valuation.
+        /// </summary>
+        /// <value>
+        /// The valuation.
+        /// </value>
+        public int Valuation { get => this.valuation; set => this.valuation = value; }
     }
 }

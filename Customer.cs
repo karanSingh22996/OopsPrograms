@@ -5,23 +5,47 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Newtonsoft.Json;
 
+    /// <summary>
+    /// ICustomer is an interface which have all the unimplemented methods
+    /// </summary>
     public interface ICustomer
     {
+        /// <summary>
+        /// Adds the customer.
+        /// </summary>
         void AddCustomer();
 
+        /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// <returns>IList return type</returns>
         IList<CustomerModel> GetAllCustomers();
 
+        /// <summary>
+        /// Customers the by identifier.
+        /// </summary>
         void CustomerById();      
     }
 
+    /// <summary>
+    /// Customer data is an implementation class of ICustomer
+    /// </summary>
+    /// <seealso cref="OopsPrograms.ICustomer" />
     public class CustomerData : ICustomer
     {
-        public CustomerModel customerModel = new CustomerModel();
+        /// <summary>
+        /// The customer model
+        /// </summary>       
+        private CustomerModel customerModel = new CustomerModel();
+
+        /// <summary>
+        /// Adds the customer.
+        /// </summary>
         public void AddCustomer()
         {
             try
@@ -40,14 +64,14 @@ namespace OopsPrograms
                 };
                 IList<CustomerModel> customers = new List<CustomerModel>();
                 Constants constants = new Constants();
-                using (StreamReader sr = new StreamReader(constants.customerData))
+                using (StreamReader sr = new StreamReader(constants.CustomerData))
                 {
                     string json = sr.ReadToEnd();
                     sr.Close();
                     customers = JsonConvert.DeserializeObject<List<CustomerModel>>(json);
                     customers.Add(customerModel);
-                    var write = JsonConvert.SerializeObject(constants.customerData);
-                    File.WriteAllText(constants.customerData, write);
+                    var write = JsonConvert.SerializeObject(constants.CustomerData);
+                    File.WriteAllText(constants.CustomerData, write);
                 }
             }
             catch (Exception e)
@@ -56,18 +80,26 @@ namespace OopsPrograms
             }
         }
 
+        /// <summary>
+        /// Customers the by identifier.
+        /// </summary>
+        /// <exception cref="NotImplementedException"> Not implemented exception </exception>
         public void CustomerById()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets all customers.
+        /// </summary>
+        /// <returns>IList return type</returns>
         public IList<CustomerModel> GetAllCustomers()
         {
             IList<CustomerModel> customers = new List<CustomerModel>();
              try
              {
                 Constants constants = new Constants();
-                using (StreamReader sr = new StreamReader(constants.customerData))
+                using (StreamReader sr = new StreamReader(constants.CustomerData))
                 {
                     string json = sr.ReadToEnd();
                     customers = JsonConvert.DeserializeObject<List<CustomerModel>>(json);

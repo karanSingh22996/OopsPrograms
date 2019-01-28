@@ -5,14 +5,25 @@
 //-----------------------------------------------------------------------
 namespace OopsPrograms
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using Newtonsoft.Json;
+
+    /// <summary>
+    /// Inventory management will keep track of the inventory items
+    /// </summary>
     public class InventoryManagement
     {
-        public IList<InventoryManagement> inventory = new List<InventoryManagement>();
-        public Constants constants = new Constants();
+        /// <summary>
+        /// The inventory
+        /// </summary>
+        private IList<InventoryManagement> inventory = new List<InventoryManagement>();
+
+        /// <summary>
+        /// The constants
+        /// </summary>
+        private Constants constants = new Constants();
 
         /// <summary>
         /// Gets or sets the identifier.
@@ -45,6 +56,25 @@ namespace OopsPrograms
         /// The price per kg.
         /// </value>
         public double PricePerKg { get; set; }
+
+        /// <summary>
+        /// Reads the file.
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns> string return type </returns>
+        public static string ReadFile(string fileName)
+        {
+            using (StreamReader streamReader = new StreamReader(fileName))
+            {
+                string json = streamReader.ReadToEnd();
+                streamReader.Close();
+                return json;
+            }
+        }
+
+        /// <summary>
+        /// Inventories the management data.
+        /// </summary>
         public void InventoryManagementData()
         {
             try
@@ -53,13 +83,13 @@ namespace OopsPrograms
                 ////Constants constants = new Constants();
                 ////string items = InventoryManagementModel.ReadFile(Constants.inventoryManageMentDetails);
 
-                using (StreamReader streamReader = new StreamReader(constants.inventoryProducts))
+                using (StreamReader streamReader = new StreamReader(this.constants.InventoryProducts))
                 {
                     string json = streamReader.ReadToEnd();
-                    inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(json);
+                    this.inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(json);
                 }
 
-                foreach (var items in inventory)
+                foreach (var items in this.inventory)
                 {
                     Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Weight + "\t" + items.PricePerKg);
                 }
@@ -70,6 +100,9 @@ namespace OopsPrograms
             }
         }
 
+        /// <summary>
+        /// Adds to inventory.
+        /// </summary>
         public void AddToInventory()
         {
             try
@@ -87,11 +120,11 @@ namespace OopsPrograms
                     PricePerKg = price
                 };
 
-                string data = InventoryManagement.ReadFile(constants.inventoryProducts);
-                inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
-                inventory.Add(managementModel);
-                var convertedJson = JsonConvert.SerializeObject(inventory);
-                File.WriteAllText(constants.inventoryProducts, convertedJson);
+                string data = InventoryManagement.ReadFile(this.constants.InventoryProducts);
+                this.inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
+                this.inventory.Add(managementModel);
+                var convertedJson = JsonConvert.SerializeObject(this.inventory);
+                File.WriteAllText(this.constants.InventoryProducts, convertedJson);
             }
             catch (Exception ex)
             {
@@ -99,22 +132,15 @@ namespace OopsPrograms
             }
         }
 
-        public static string ReadFile(string fileName)
-        {
-            using (StreamReader streamReader = new StreamReader(fileName))
-            {
-                string json = streamReader.ReadToEnd();
-                streamReader.Close();
-                return json;
-            }
-        }
-
+        /// <summary>
+        /// Updates the inventory data.
+        /// </summary>
         public void UpdateInventoryData()
         {
             try
             {
                 ////Constants constants = new Constants();
-                string data = InventoryManagement.ReadFile(constants.inventoryProducts);
+                string data = InventoryManagement.ReadFile(this.constants.InventoryProducts);
                 IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
                 foreach (var items in inventoryDetails)
                 {
@@ -158,7 +184,7 @@ namespace OopsPrograms
                         {
                             while (id == item.Id)
                             {
-                                item.Weight = Weight;
+                                item.Weight = this.Weight;
                                 break;
                             }
                         }
@@ -167,7 +193,7 @@ namespace OopsPrograms
                 }
 
                 var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
-                File.WriteAllText(this.constants.inventoryProducts, convertedJson);
+                File.WriteAllText(this.constants.InventoryProducts, convertedJson);
             }
             catch (Exception e)
             {
@@ -175,11 +201,14 @@ namespace OopsPrograms
             }
         }
 
+        /// <summary>
+        /// Deletes this instance.
+        /// </summary>
         public void Delete()
         {
             try
             {
-                string data = InventoryManagement.ReadFile(constants.inventoryProducts);
+                string data = InventoryManagement.ReadFile(this.constants.InventoryProducts);
                 IList<InventoryManagement> inventoryDetails = JsonConvert.DeserializeObject<List<InventoryManagement>>(data);
 
                 foreach (var items in inventoryDetails)
@@ -208,7 +237,7 @@ namespace OopsPrograms
                 }
 
                 var convertedJson = JsonConvert.SerializeObject(inventoryDetails);
-                File.WriteAllText(this.constants.inventoryProducts, convertedJson);
+                File.WriteAllText(this.constants.InventoryProducts, convertedJson);
             }
             catch (Exception e)
             {

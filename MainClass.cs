@@ -31,6 +31,8 @@ namespace OopsPrograms
                     Console.WriteLine("Enter 5.For DeckOfCards Program");
                     Console.WriteLine("Enter 6.For Commercial Data processing Program");
                     Console.WriteLine("Enter 7.For Removing stock Program");
+                    Console.WriteLine("Enter 8 For Address Book Program");
+                    Console.WriteLine("Enter 9 For Card in sorted queuue Program");
                     int choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -51,7 +53,7 @@ namespace OopsPrograms
                             break;
                         case 5:
                             DeckOfCard deckOfCard = new DeckOfCard();
-                            deckOfCard.Execution();
+                            deckOfCard.DeckCard();
                             break;
                         case 6:
                             DataProcessingMain dataProcessingMain = new DataProcessingMain();
@@ -60,6 +62,14 @@ namespace OopsPrograms
                         case 7:
                             RemovingStock removingStock = new RemovingStock();
                             removingStock.RemoveStock();
+                            break;
+                        case 8:
+                            AddresManager addresManager = new AddresManager();
+                            addresManager.DriverManager();
+                            break;
+                        case 9:
+                            CardQueue cardQueue = new CardQueue();
+                            cardQueue.CardInQueue();
                             break;
                         default:
                             Console.WriteLine("Enter valid data");
