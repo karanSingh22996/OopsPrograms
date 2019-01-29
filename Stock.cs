@@ -30,14 +30,14 @@ namespace OopsPrograms
                     ////json variable store all the details of the files read by readToEnd method
                     string json = r.ReadToEnd();
                     ////printing all name on console
-                    Console.WriteLine("Id \t name \t\t availableShares \t price");
+                    Console.WriteLine("Id \t name \t\t availableShares \t price \t Amount");
                     ////creating object of list to desrialize the data inside the json file
                     IList<StockModel> items = JsonConvert.DeserializeObject<List<StockModel>>(json);
                     ////iterating using enhanced foreach loop to print all the data inside the json file
                     foreach (var share in items)
                     {
                         ////Console.WriteLine(share.availableShares);
-                        Console.WriteLine("{0} \t {1}  \t {2} \t\t\t {3}", share.Id, share.Name, share.AvailableShares, share.Price);
+                        Console.WriteLine("{0} \t {1}  \t {2} \t\t\t {3} \t {4}", share.Id, share.Name, share.AvailableShares, share.Price, (share.AvailableShares * share.Price));
                     }
                 }
             }

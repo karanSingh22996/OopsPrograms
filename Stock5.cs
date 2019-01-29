@@ -36,11 +36,13 @@ namespace OopsPrograms
                 int price = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter number of share");
                 int num = Convert.ToInt32(Console.ReadLine());
-                StockModel5 stock = new StockModel5();
-                stock.Id = id;
-                stock.Name = name;
-                stock.PricePerShare = price;
-                stock.NumberOfShare = num;
+                StockModel5 stock = new StockModel5
+                {
+                    Id = id,
+                    Name = name,
+                    PricePerShare = price,
+                    NumberOfShare = num
+                };
                 Constants constants = new Constants();
                 using (StreamReader sr = new StreamReader(constants.StockFile))
                 {

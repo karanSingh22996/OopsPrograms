@@ -87,6 +87,7 @@ namespace OopsPrograms
                 {
                     string json = streamReader.ReadToEnd();
                     this.inventory = JsonConvert.DeserializeObject<List<InventoryManagement>>(json);
+                    streamReader.Close();
                 }
 
                 foreach (var items in this.inventory)

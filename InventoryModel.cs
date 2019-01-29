@@ -66,7 +66,7 @@ namespace OopsPrograms
                     List<InventoryModel> items = JsonConvert.DeserializeObject<List<InventoryModel>>(json);
                     foreach (var model in items)
                     {
-                        Console.WriteLine(" {0}\t  {1}\t  {2}\t\t {3}", model.Name, model.Weight, model.PriceperKg, model.Weight * model.PriceperKg);
+                        Console.WriteLine(" {0}\t  {1}\t  {2}\t\t {3} ", model.Name, model.Weight, model.PriceperKg, model.Weight * model.PriceperKg);
                         ////Console.WriteLine("Weight {0}", model.weight);
                         ////Console.WriteLine("Price {0}",model.priceperKg);
                         ////Console.WriteLine("The price of "+model.name+" is "+(model.weight*model.priceperKg));

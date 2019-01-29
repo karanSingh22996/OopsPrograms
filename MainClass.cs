@@ -64,8 +64,8 @@ namespace OopsPrograms
                             removingStock.RemoveStock();
                             break;
                         case 8:
-                            AddresManager addresManager = new AddresManager();
-                            addresManager.DriverManager();
+                            AddressBook addresBook = new AddressBook();
+                            addresBook.AddressBookDetails();
                             break;
                         case 9:
                             CardQueue cardQueue = new CardQueue();

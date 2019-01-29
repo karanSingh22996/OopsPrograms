@@ -23,12 +23,12 @@ namespace OopsPrograms
         /// <summary>
         /// The no of share
         /// </summary>
-        private int noOfShare;
+        private int? noOfShare;
 
         /// <summary>
         /// The amount
         /// </summary>
-        private int amount;
+        private int? amount;
 
         /// <summary>
         /// The time
@@ -57,7 +57,7 @@ namespace OopsPrograms
         /// <value>
         /// The no of share.
         /// </value>
-        public int NoOfShare { get => this.noOfShare; set => this.noOfShare = value; }
+        public int? NoOfShare { get => this.noOfShare; set => this.noOfShare = value; }
 
         /// <summary>
         /// Gets or sets the amount.
@@ -65,7 +65,7 @@ namespace OopsPrograms
         /// <value>
         /// The amount.
         /// </value>
-        public int Amount { get => this.amount; set => this.amount = value; }
+        public int? Amount { get => this.amount; set => this.amount = value; }
 
         /// <summary>
         /// Gets or sets the time.
@@ -81,6 +81,6 @@ namespace OopsPrograms
         /// <value>
         /// The type of the transaction.
         /// </value>
-        public TransactionType TransactionType { get; set; }
+        public TransactionType? TransactionType { get; set; }
     }
 }

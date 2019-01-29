@@ -1,0 +1,24 @@
+[
+  {
+    [
+      {
+        "FirstName": "karan",
+        "LastName": "singh",
+        "Address": "mansagar",
+        "City": "ara",
+        "State": "bihar",
+        "ZipCode": "502295",
+        "PhoneNumber": "9874563210"
+      },
+      {
+        "FirstName": "manju",
+        "LastName": "bagade",
+        "Address": "bagalko",
+        "City": "bagalkot",
+        "State": "karnataka",
+        "ZipCode": "587101",
+        "PhoneNumber": "8147698139"
+      }
+    ]
+  }
+]

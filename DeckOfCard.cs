@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="Card.cs" company="Bridgelabz">
+// <copyright file="DeckOfCard.cs" company="Bridgelabz">
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -12,9 +12,14 @@ namespace OopsPrograms
     /// </summary>
     public class DeckOfCard
     {
+        /// <summary>
+        /// Decks the card.
+        /// </summary>
         public void DeckCard()
         {
-            String[,] playercard = Utility.cardDistribute();
+            ////declaring and assigning the return value of card distribute method to player card array
+            string[,] playercard = Utility.CardDistribute();
+            ////printing on console
             Console.WriteLine("Player1 \t Player2 \t Player3 \t Player4");
             Console.WriteLine();
             int x = 0;
@@ -31,6 +36,7 @@ namespace OopsPrograms
                         x++;
                     }
                 }
+
                 Console.WriteLine();
             }
         }
