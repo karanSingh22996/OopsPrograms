@@ -11,14 +11,14 @@ namespace OopsPrograms
     public class CustomerModel
     {
         /// <summary>
-        /// The name
-        /// </summary>
-        private string name;
-
-        /// <summary>
         /// The identifier
         /// </summary>
         private int id;
+
+        /// <summary>
+        /// The name
+        /// </summary>
+        private string name;
 
         /// <summary>
         /// The valuation

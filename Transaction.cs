@@ -59,6 +59,7 @@ namespace OopsPrograms
         /// </exception>
         public void BuyStock()
         {
+            int priceOfShare = 0;
             try
             {
                 CustomerData customer = new CustomerData();
@@ -105,7 +106,7 @@ namespace OopsPrograms
                 int amountValuation = 0;
                 if (numberOfShares < stockDataModel.NumberOfShare || numberOfShares <= 0)
                 {
-                    int priceOfShare = 0;
+                    priceOfShare = 0;
                     bool stockFlag = true;
                     foreach (var items in stockModels)
                     {
@@ -129,6 +130,7 @@ namespace OopsPrograms
                         if (item.Id == customerId)
                         {
                             item.Valuation = item.Valuation - (priceOfShare * numberOfShares);
+                            Console.WriteLine("Your cost for buying item is {0} ", priceOfShare * numberOfShares);
                             customerName = item.Name;
                             amountValuation = item.Valuation;
                             customerFlag = false;
@@ -150,7 +152,7 @@ namespace OopsPrograms
                     CustomerName = customerName,
                     StockName = stockName,
                     NoOfShare = numberOfShares,
-                    Amount = amountValuation,
+                    Amount = priceOfShare * numberOfShares,
                     Time = DateTime.Now.ToString(),
                     TransactionType = TransactionType.Buy
                 };
@@ -182,6 +184,7 @@ namespace OopsPrograms
         /// </exception>
         public void SellStock()
         {
+            int priceOfShare = 0;
             try
             {
                 CustomerData customer = new CustomerData();
@@ -228,7 +231,7 @@ namespace OopsPrograms
                 int amountValuation = 0;
                 if (numberOfShares > 0)
                 {
-                    int priceOfShare = 0;
+                    priceOfShare = 0;
                     bool stockFlag = true;
                     foreach (var items in stockModels)
                     {
@@ -273,7 +276,7 @@ namespace OopsPrograms
                     CustomerName = customerName,
                     StockName = stockName,
                     NoOfShare = numberOfShares,
-                    Amount = amountValuation,
+                    Amount = priceOfShare * numberOfShares,
                     Time = DateTime.Now.ToString(),
                     TransactionType = TransactionType.Sell
                 };

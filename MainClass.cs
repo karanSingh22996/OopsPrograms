@@ -22,6 +22,7 @@ namespace OopsPrograms
             try
             {
                 char ch;
+                int choice = 0;
                 do
                 {
                     Console.WriteLine("Enter 1.To read data from json file");
@@ -33,7 +34,17 @@ namespace OopsPrograms
                     Console.WriteLine("Enter 7.For Removing stock Program");
                     Console.WriteLine("Enter 8 For Address Book Program");
                     Console.WriteLine("Enter 9 For Card in sorted queuue Program");
-                    int choice = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter 10 for transaction time in queue");
+                    Console.WriteLine("Enter 11 for transaction details in stack");
+                    try
+                    {
+                        choice = Convert.ToInt32(Console.ReadLine());
+                    }
+                    catch (SystemException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
                     switch (choice)
                     {
                         case 1:
@@ -70,6 +81,14 @@ namespace OopsPrograms
                         case 9:
                             CardQueue cardQueue = new CardQueue();
                             cardQueue.CardInQueue();
+                            break;
+                        case 10:
+                            TransactionQueue transactionQueue = new TransactionQueue();
+                            transactionQueue.TransactionDetails();
+                            break;
+                        case 11:
+                            TransactionStack transactionStack = new TransactionStack();
+                            transactionStack.StackTransaction();
                             break;
                         default:
                             Console.WriteLine("Enter valid data");

@@ -73,6 +73,7 @@ namespace OopsPrograms
                     var convertedJson = JsonConvert.SerializeObject(addressBook);
                     File.WriteAllText(constants.Address, convertedJson);
                     Console.WriteLine("new person added");
+                    this.PrintAddressBook();
                 }
                 else
                 {
@@ -90,15 +91,22 @@ namespace OopsPrograms
         /// </summary>
         public void Update()
         {
+            ////using try block to hold unwanted excecption
             try
             {
+                this.PrintAddressBook();
                 Console.WriteLine("enter your phone number to update");
                 string phoneNumber = Console.ReadLine();
+                ////Creating object of constant class
                 Constants constants = new Constants();
+                ////creating list class object
                 IList<AddressBookModel> addressBookModel = new List<AddressBookModel>();
+                ////Rdaing dat from file and assigning it to string variable
                 string json = AddressUtility.ReadFile(constants.Address);
+                ////Deseralizing the object
                 addressBookModel = JsonConvert.DeserializeObject<List<AddressBookModel>>(json);
                 bool number = true;
+                ////foreach loop iterated
                 foreach (var items in addressBookModel)
                 {
                     if (items.PhoneNumber == phoneNumber)
@@ -136,7 +144,7 @@ namespace OopsPrograms
                                 case 3:
                                     Console.WriteLine("enter new state");
                                     string newState = Console.ReadLine();
-                                    if (Regex.IsMatch(newState, @"[a-zA-Z]"))
+                                    if (Regex.IsMatch(newState, @"[a-zA-Z]{3,10}"))
                                     {
                                         items.PhoneNumber = newState;
                                     }
@@ -161,13 +169,14 @@ namespace OopsPrograms
                                     break;
                             }
 
-                            Console.WriteLine("enter y to continue");
+                            Console.WriteLine("enter y to continue or enter any key to stop");
                             doCondition = Console.ReadLine();
                         }
                         while (doCondition.Equals("y"));
                         var convertedJson = JsonConvert.SerializeObject(addressBookModel);
                         File.WriteAllText(constants.Address, convertedJson);
                         Console.WriteLine("update successful");
+                        this.PrintAddressBook();
                     }
                 }
 
@@ -244,6 +253,7 @@ namespace OopsPrograms
                 ////writing in to the file
                 File.WriteAllText(constants.Address, convertedJson);
                 Console.WriteLine("your record deleted");
+                this.PrintAddressBook();
             }
             catch (Exception e)
             {
@@ -266,6 +276,7 @@ namespace OopsPrograms
                 var orderedByLastName = JsonConvert.SerializeObject(ascending);
                 File.WriteAllText(constants.Address, orderedByLastName);
                 Console.WriteLine("Sorted by last name");
+                this.PrintAddressBook();
             }
             catch (Exception e)
             {
@@ -288,6 +299,7 @@ namespace OopsPrograms
                 var orderedByLastName = JsonConvert.SerializeObject(ascending);
                 File.WriteAllText(constants.Address, orderedByLastName);
                 Console.WriteLine("Sorted by Zip code");
+                this.PrintAddressBook();
             }
             catch (Exception e)
             {

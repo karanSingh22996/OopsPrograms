@@ -102,6 +102,7 @@ namespace OopsPrograms
                 using (StreamReader sr = new StreamReader(constants.CustomerData))
                 {
                     string json = sr.ReadToEnd();
+                    sr.Close();
                     customers = JsonConvert.DeserializeObject<List<CustomerModel>>(json);
 
                     Console.WriteLine("id \t name \t valuation");
