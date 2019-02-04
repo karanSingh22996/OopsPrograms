@@ -124,48 +124,16 @@ namespace OopsPrograms
                             switch (switchCase)
                             {
                                 case 1:
-                                    Console.WriteLine("enter new number");
-                                    string newPhoneNumber = Console.ReadLine();
-                                    if (Regex.IsMatch(phoneNumber, @"[0-9]{10}"))
-                                    {
-                                        items.PhoneNumber = newPhoneNumber;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("enter phone number correctly");
-                                    }
-
+                                    UpdateNum(items);
                                     break;
                                 case 2:
-                                    Console.WriteLine("enter new address");
-                                    string newAddress = Console.ReadLine();
-                                    items.Address = Console.ReadLine();
+                                    UpdateAdd(items);
                                     break;
                                 case 3:
-                                    Console.WriteLine("enter new state");
-                                    string newState = Console.ReadLine();
-                                    if (Regex.IsMatch(newState, @"[a-zA-Z]{3,10}"))
-                                    {
-                                        items.PhoneNumber = newState;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("invalid data");
-                                    }
-
+                                    UpdateState(items);
                                     break;
                                 case 4:
-                                    Console.WriteLine("enter new city");
-                                    string newCity = Console.ReadLine();
-                                    if (Regex.IsMatch(newCity, @"[a-zA-Z]"))
-                                    {
-                                        items.PhoneNumber = newCity;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("invalid data");
-                                    }
-
+                                    UpdateState(items);
                                     break;
                             }
 
@@ -209,7 +177,7 @@ namespace OopsPrograms
                     {
                         Console.Write(items.FirstName + "\t" + items.LastName + "\t" + items.Address + "\t" + items.City + "\t" + items.State + "\t" + items.ZipCode + "\t" + items.PhoneNumber);
                         Console.WriteLine();
-                    }                   
+                    }
                 }
             }
             catch (Exception e)
@@ -304,6 +272,66 @@ namespace OopsPrograms
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Updates the number.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        public static void UpdateNum( AddressBookModel items)
+        {
+            Console.WriteLine("enter new number");
+            string newPhoneNumber = Console.ReadLine();
+            if (Regex.IsMatch(newPhoneNumber, @"[0-9]{10}"))
+            {
+                items.PhoneNumber = newPhoneNumber;
+            }
+            else
+            {
+                Console.WriteLine("enter phone number correctly");
+            }
+        }
+
+        /// <summary>
+        /// Updates the add.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        public static void UpdateAdd(AddressBookModel items)
+        {
+            Console.WriteLine("enter new address");
+            string newAddress = Console.ReadLine();
+            items.Address = Console.ReadLine();
+        }
+        public static void UpdateState(AddressBookModel items)
+        {
+            Console.WriteLine("enter new state");
+            string newState = Console.ReadLine();
+            if (Regex.IsMatch(newState, @"[a-zA-Z]{3,10}"))
+            {
+                items.PhoneNumber = newState;
+            }
+            else
+            {
+                Console.WriteLine("invalid data");
+            }
+        }
+
+        /// <summary>
+        /// Updates the city.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        public static void UpdateCity(AddressBookModel items)
+        {
+            Console.WriteLine("enter new city");
+            string newCity = Console.ReadLine();
+            if (Regex.IsMatch(newCity, @"[a-zA-Z]"))
+            {
+                items.PhoneNumber = newCity;
+            }
+            else
+            {
+                Console.WriteLine("invalid data");
             }
         }
     }

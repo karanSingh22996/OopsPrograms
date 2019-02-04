@@ -34,38 +34,19 @@ namespace OopsPrograms
                     switch (choice)
                     {
                         case 1:
-                            CustomerData customer1 = new CustomerData();
-                            customer1.AddCustomer();
+                            DataProcessingMain.AddingCustomer();
                             break;
                         case 2:
-                            CustomerData customer2 = new CustomerData();
-                            IList<CustomerModel> list = customer2.GetAllCustomers();
-                            foreach (var items in list)
-                            {
-                                Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Valuation);
-                            }
-
+                            DataProcessingMain.ViewCustomer();
                             break;
                         case 3:
-                            Stock5 stock = new Stock5();
-                            stock.AddStock();
+                            DataProcessingMain.AddStock();
                             break;
                         case 4:
-                            Stock5 stock1 = new Stock5();
-                            IList<StockModel5> stocks = stock1.GetStock();
-                            foreach (var items in stocks)
-                            {
-                                Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.NumberOfShare + "\t" + items.PricePerShare);
-                            }
-
+                            DataProcessingMain.ViewStack();
                             break;
                         case 5:
-                            IList<TransactionModel> item = Transaction.GetAllTransactions();
-                            foreach (var items in item)
-                            {
-                                Console.WriteLine(items.CustomerName + "\t" + items.StockName + "\t" + items.NoOfShare + "\t" + items.Time + "\t" + items.TransactionType + "\t" + items.Amount);
-                            }
-
+                            DataProcessingMain.ViewTransactions();
                             break;
                         case 6:
                             Transaction transaction = new Transaction();
@@ -85,6 +66,62 @@ namespace OopsPrograms
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Addings the customer.
+        /// </summary>
+        public static void AddingCustomer()
+        {
+            CustomerData customer1 = new CustomerData();
+            customer1.AddCustomer();
+        }
+
+        /// <summary>
+        /// Views the customer.
+        /// </summary>
+        public static void ViewCustomer()
+        {
+            CustomerData customer2 = new CustomerData();
+            IList<CustomerModel> list = customer2.GetAllCustomers();
+            foreach (var items in list)
+            {
+                Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.Valuation);
+            }
+        }
+
+        /// <summary>
+        /// Adds the stock.
+        /// </summary>
+        public static void AddStock()
+        {
+            Stock5 stock = new Stock5();
+            stock.AddStock();
+        }
+
+        /// <summary>
+        /// Views the stack.
+        /// </summary>
+        public static void ViewStack()
+        {
+            Stock5 stock1 = new Stock5();
+            IList<StockModel5> stocks = stock1.GetStock();
+            foreach (var items in stocks)
+            {
+                Console.WriteLine(items.Id + "\t" + items.Name + "\t" + items.NumberOfShare + "\t" + items.PricePerShare);
+            }
+        }
+
+        /// <summary>
+        /// Views the transactions.
+        /// </summary>
+        public static void ViewTransactions()
+        {
+            IList<TransactionModel> item = Transaction.GetAllTransactions();
+            foreach (var items in item)
+            {
+                Console.WriteLine(items.CustomerName + "\t" + items.StockName + "\t" + items.NoOfShare + "\t" + items.Time + "\t" + items.TransactionType + "\t" + items.Amount);
             }
         }
     }
